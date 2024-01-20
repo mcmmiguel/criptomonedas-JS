@@ -82,6 +82,8 @@ function mostrarAlerta(mensaje) {
 function consultarAPI() {
     const { moneda, criptomoneda } = objBusqueda;
 
+    mostrarSpinner();
+
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
     fetch(url)
         .then(respuesta => respuesta.json())
@@ -121,3 +123,11 @@ function limpiarHTML() {
         resultado.removeChild(resultado.firstChild);
     }
 };
+
+function mostrarSpinner() {
+    limpiarHTML();
+
+    const spinner = document.createElement('DIV');
+    spinner.classList.add('spinner');
+    resultado.appendChild(spinner);
+}
